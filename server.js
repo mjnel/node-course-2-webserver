@@ -1,7 +1,9 @@
 const express = require("express");
 const hbs = require("hbs");
 const fs = require("fs");
-const serverFunctions = require("./middleware/middleware.js")
+const serverFunctions = require("./middleware/middleware.js");
+// process.env is anobject whic stores all environment variables as key value pairs
+const port = process.env.PORT || 3000;
 
 var app = express();
 
@@ -16,11 +18,11 @@ app.set(`view engine`,`hbs`);
 // serverFunctions.test();
 
 
-app.use((req, res, next)=>{
-
-  res.render(`maintenance.hbs`)
-
-})
+// app.use((req, res, next)=>{
+//
+//   res.render(`maintenance.hbs`)
+//
+// })
 
 app.use(express.static(__dirname+`/public`));
 
@@ -61,6 +63,6 @@ res.send({
 })
 
 //Binds application to port on machine
-app.listen(3000, ()=>{
-  console.log("Server is up on port 3000");
+app.listen(port, ()=>{
+  console.log(`Server is up on port ${port}`);
 });
